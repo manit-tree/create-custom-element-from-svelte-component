@@ -3,17 +3,22 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [svelte({
+      compilerOptions: {
+        customElement: true
+      }
+    })
+  ],
   build: {
         outDir: './dist',
-        minify: false,
+        minify: true,
         sourcemap: false,
         emptyOutDir: true,   
 
         lib: {
-            entry: './src/App.svelte',
-            name:'App',
-            formats: ['iife','esm'],
+            entry: ['./src/CounterComponent.js'],
+            name:'___',
+            formats: ['iife'],
             fileName: (format) => `[name].[format].js`
         }
     },
